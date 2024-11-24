@@ -94,9 +94,6 @@ if __name__ == "__main__":
     # unidade_consumidora_clean = clean_unidade_consumidora("data/unidade_consumidora.csv")
     # unidade_consumidora_clean.to_csv("cleaned/unidade_consumidora.csv", index=False)
 
-    # usina_clean = clean_usina("data/usina.csv")
-    # usina_clean.to_csv("cleaned/usina.csv", index=False)
-
     # geracao_clean = clean_geracao("data/geracao.csv")
     # geracao_clean.to_csv("cleaned/geracao.csv", index=False)
 
@@ -108,5 +105,3 @@ if __name__ == "__main__":
 
     # endereco_clean = clean_endereco("data/endereco.csv")
     # endereco_clean.to_csv("cleaned/endereco.csv", index=False)
-
-    ...
