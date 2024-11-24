@@ -12,6 +12,8 @@ ids_usinas_filtradas = usinas_filtradas['id']
 
 historico_usinas_filtradas = usinas_historico[usinas_historico['plant_id'].isin(ids_usinas_filtradas)]
 
+historico_usinas_filtradas = historico_usinas_filtradas.dropna(subset=['plant_id'])
+
 historico_usinas_sorted = historico_usinas_filtradas.sort_values(by=['plant_id', 'start_date'])
 
 # TODO: Testar se isto está realmente preciso
@@ -28,6 +30,7 @@ usina_com_potencia_atual = usinas_filtradas.merge(
 
 total_usinas_cidade_merged = usina_com_potencia_atual.shape[0].compute()
 
-print(f"Total de usinas em Natal: {total_usinas_cidade_merged}")
+print(usina_com_potencia_atual.head())
+print(f"Total de usinas em {CIDADE}: {total_usinas_cidade_merged}")
 
-usina_com_potencia_atual.to_csv(FILE_PATH, index=False)
+# usina_com_potencia_atual.to_csv(FILE_PATH, index=False, single_file=True)
