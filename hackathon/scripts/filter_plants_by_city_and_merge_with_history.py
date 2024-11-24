@@ -32,5 +32,4 @@ total_usinas_cidade_merged = usina_com_potencia_atual.shape[0].compute()
 
 print(usina_com_potencia_atual.head())
 print(f"Total de usinas em {CIDADE}: {total_usinas_cidade_merged}")
-
-# usina_com_potencia_atual.to_csv(FILE_PATH, index=False, single_file=True)
+usina_com_potencia_atual.to_csv(FILE_PATH, index=False, single_file=True)
