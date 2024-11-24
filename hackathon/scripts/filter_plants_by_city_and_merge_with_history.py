@@ -1,5 +1,4 @@
-from hackathon.utils.dataframe import load_data, clean_and_merge, drop_columns
-import pandas as pd
+from hackathon.utils.dataframe import load_data 
 
 CIDADE = "Natal"
 FILE_PATH = f"cleaned/usina_{CIDADE.lower()}_merged.csv"
@@ -27,8 +26,8 @@ usina_com_potencia_atual = usinas_filtradas.merge(
     how='left'
 )
 
-# total_usinas_cidade_merged = usina_com_potencia_atual.shape[0].
+total_usinas_cidade_merged = usina_com_potencia_atual.shape[0].compute()
 
-print(usina_com_potencia_atual.head())
+print(f"Total de usinas em Natal: {total_usinas_cidade_merged}")
 
-# print(f"Total de usinas em Natal: {total_usinas_cidade_merged}")
+usina_com_potencia_atual.to_csv(FILE_PATH, index=False)

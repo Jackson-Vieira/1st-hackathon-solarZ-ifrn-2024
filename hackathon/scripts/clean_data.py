@@ -1,13 +1,4 @@
-import numpy as np
 import pandas as pd
-
-import dask.dataframe as dd
-
-def clean_geracao(geracao_path):
-    geracao = dd.read_csv(geracao_path)
-    geracao = geracao.dropna(subset=["id_usina"])
-    geracao["id_usina"] = geracao["id_usina"].astype(int)
-    return geracao
 
 def clean_unidade_consumidora(file_path: str):
     """
@@ -89,19 +80,18 @@ def clean_endereco(file_path):
     return df
 
 
-# Exemplo de uso
 if __name__ == "__main__":
-    # unidade_consumidora_clean = clean_unidade_consumidora("data/unidade_consumidora.csv")
-    # unidade_consumidora_clean.to_csv("cleaned/unidade_consumidora.csv", index=False)
+    usina = clean_usina("data/usina.csv")
+    usina.to_csv("cleaned/usina.csv", index=False)
 
-    # geracao_clean = clean_geracao("data/geracao.csv")
-    # geracao_clean.to_csv("cleaned/geracao.csv", index=False)
+    unidade_consumidora_clean = clean_unidade_consumidora("data/unidade_consumidora.csv")
+    unidade_consumidora_clean.to_csv("cleaned/unidade_consumidora.csv", index=False)
 
-    # usina_historico_clean = clean_usina_historico( "data/usina_historico.csv")
-    # usina_historico_clean.to_csv("cleaned/usina_historico.csv", index=False)
+    usina_historico_clean = clean_usina_historico( "data/usina_historico.csv")
+    usina_historico_clean.to_csv("cleaned/usina_historico.csv", index=False)
 
-    # cidade_clean = clean_cidade_dask("data/cidade.csv")
-    # cidade_clean.to_csv("cleaned/cidade.csv", index=False)
+    cidade_clean = clean_cidade_dask("data/cidade.csv")
+    cidade_clean.to_csv("cleaned/cidade.csv", index=False)
 
-    # endereco_clean = clean_endereco("data/endereco.csv")
-    # endereco_clean.to_csv("cleaned/endereco.csv", index=False)
+    endereco_clean = clean_endereco("data/endereco.csv")
+    endereco_clean.to_csv("cleaned/endereco.csv", index=False)

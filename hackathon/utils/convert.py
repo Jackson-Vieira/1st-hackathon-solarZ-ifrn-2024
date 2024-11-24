@@ -17,7 +17,7 @@ def dataframe_to_parquet(df, file_output):
     None
     """
     try:
-        name_function = lambda x: f"data-{x}.parquet"
+        name_function = lambda x: f"data-{x}.parquet"  # noqa: E731
         df.to_parquet(file_output, name_function=name_function)
         print(f"Dataframe salvo com sucesso como Parquet: {file_output}")
     except ImportError:
