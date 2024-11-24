@@ -21,10 +21,9 @@ if __name__ == "__main__":
     num_partitions = df.npartitions
     logging.info(f"O dataframe foi dividido em {num_partitions} partições para processamento.")
 
-    with TqdmCallback(desc="compute", total_tasks=num_partitions) as progress, ProgressBar():
+    with TqdmCallback(desc="compute") as progress:
         logging.info("Iniciando a conversão do dataframe para Parquet...")
         dataframe_to_parquet(df, "cleaned/geracao")
-        # df.compute()
     
 
     logging.info("Conversão para Parquet concluída com sucesso!")
