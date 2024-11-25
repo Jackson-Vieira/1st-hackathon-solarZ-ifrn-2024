@@ -82,6 +82,23 @@ if __name__ == "__main__":
 
         media_e_desvio_por_grupo = media_e_desvio_por_grupo.dropna(subset=['media_esperada', 'std', 'power_range'])
 
+        logging.info("Calculando o z-score para identificar usinas anômalas...")
+
+        usinas = usinas.merge(
+            media_e_desvio_por_grupo,
+            on='power_range',
+            how='left'
+        )
+
+        usinas['zscore'] = (usinas['quantidade'] - usinas['media_esperada']) / usinas['std']
+
+
+        zscore_threshold = 2
+        usinas['anomalous'] = usinas['zscore'].abs() > zscore_threshold
+
+        usinas_anomalas = usinas[usinas['anomalous']].compute()
+        logging.info(f"Número de usinas anômalas detectadas: {len(usinas_anomalas)}")
+
         # # geracao = geracao.merge(
         # #     media_e_desvio_por_grupo,
         # #     on=['power_range', 'cidade_nome'],
