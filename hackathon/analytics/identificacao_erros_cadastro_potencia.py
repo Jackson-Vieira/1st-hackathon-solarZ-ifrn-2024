@@ -90,11 +90,9 @@ if __name__ == "__main__":
             how='left'
         )
 
-        usinas['zscore'] = (usinas['quantidade'] - usinas['media_esperada']) / usinas['std']
+        # usinas['zscore'] = (usinas['quantidade'] - usinas['media_esperada']) / usinas['std']
 
-
-        zscore_threshold = 2
-        usinas['anomalous'] = usinas['zscore'].abs() > zscore_threshold
+        usinas['anomalous'] = usinas['quantidade'] < usinas['media_esperada'] * 0.8
 
         usinas_anomalas = usinas[usinas['anomalous']].compute()
         logging.info(f"Número de usinas anômalas detectadas: {len(usinas_anomalas)}")
