@@ -90,24 +90,11 @@ if __name__ == "__main__":
             how='left'
         )
 
-        # usinas['zscore'] = (usinas['quantidade'] - usinas['media_esperada']) / usinas['std']
+        # TODO: Utilizar Z-Score para detecção de anomalias
 
         usinas['anomalous'] = usinas['quantidade'] < usinas['media_esperada'] * 0.8
-
         usinas_anomalas = usinas[usinas['anomalous']].compute()
         logging.info(f"Número de usinas anômalas detectadas: {len(usinas_anomalas)}")
-
-        # # geracao = geracao.merge(
-        # #     media_e_desvio_por_grupo,
-        # #     on=['power_range', 'cidade_nome'],
-        # #     how='left'
-        # # )
-
-        # # geracao = geracao.drop_duplicates(subset=['power_range'])
-        # # geracao = geracao.dropna()
-
-        # colunas_geracao = ['power_range', 'cidade_nome', 'media_esperada', 'std']
-        # geracao.to_csv("output/geracao_grupo.csv", index=False, single_file=True, columns=colunas_geracao)
 
         media_e_desvio_por_grupo.to_csv("output/geracao_grupo_v1.csv", index=False)
         usinas.to_csv("output/usinas_grupo.csv", index=False, single_file=True)
